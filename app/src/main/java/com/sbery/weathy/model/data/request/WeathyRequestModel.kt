@@ -1,4 +1,4 @@
-package com.sbery.weathy.data.model.request
+package com.sbery.weathy.model.data.request
 
 data class WeathyRequestModel(
     val lat: String,

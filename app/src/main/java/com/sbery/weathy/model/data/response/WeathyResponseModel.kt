@@ -1,4 +1,4 @@
-package com.sbery.weathy.data.model.response
+package com.sbery.weathy.model.data.response
 
 import com.google.gson.annotations.SerializedName
 
