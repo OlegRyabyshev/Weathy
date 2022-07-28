@@ -1,6 +1,6 @@
 package com.sbery.weathy.model.data.request
 
-data class WeathyRequestModel(
+data class WeatherRequestModel(
     val lat: String,
     val lon: String,
     val apiKey: String = "42c363b9de547ba20ac2edde454068bd",
