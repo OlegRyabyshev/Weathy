@@ -1,6 +1,6 @@
 package com.sbery.weathy.data.retrofit
 
-import com.sbery.weathy.model.data.response.WeatherResponseModel
+import com.sbery.weathy.model.data.response.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -17,7 +17,7 @@ interface WeatherApiService {
         @Query("exclude") exclude: String,
         @Query("units") units: String,
         @Query("lang") lang: String,
-    ): WeatherResponseModel
+    ): WeatherResponse
 
     companion object {
         const val BASE_URL = "https://api.openweathermap.org/"

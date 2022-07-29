@@ -2,7 +2,7 @@ package com.sbery.weathy.model.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class WeatherResponseModel(
+data class WeatherResponse(
 //    @field:SerializedName("alerts")
 //    val alerts: List<AlertsItem?>? = null,
     @field:SerializedName("lat")
@@ -14,13 +14,13 @@ data class WeatherResponseModel(
     @field:SerializedName("timezone_offset")
     val timezoneOffset: Int? = null,
     @field:SerializedName("current")
-    val current: Current? = null,
+    val current: CurrentResponse? = null,
     @field:SerializedName("minutely")
-    val minutely: List<MinutelyItem?>? = null,
+    val minutely: List<MinutelyItemResponse?>? = null,
     @field:SerializedName("hourly")
-    val hourly: List<HourlyItem?>? = null,
+    val hourly: List<HourlyItemResponse?>? = null,
     @field:SerializedName("daily")
-    val daily: List<DailyItem?>? = null
+    val daily: List<DailyItemResponse?>? = null
 ) {
 
 //    data class AlertsItem(
@@ -38,7 +38,7 @@ data class WeatherResponseModel(
 //        val tags: List<String?>? = null
 //    )
 
-    data class Current(
+    data class CurrentResponse(
         @field:SerializedName("sunrise")
         val sunrise: Int? = null,
         @field:SerializedName("temp")
@@ -69,7 +69,7 @@ data class WeatherResponseModel(
         val windSpeed: Double? = null
     )
 
-    data class DailyItem(
+    data class DailyItemResponse(
         @field:SerializedName("moonset")
         val moonset: Int? = null,
         @field:SerializedName("rain")
@@ -110,7 +110,7 @@ data class WeatherResponseModel(
         val windSpeed: Double? = null
     )
 
-    data class HourlyItem(
+    data class HourlyItemResponse(
         @field:SerializedName("rain")
         val rain: Rain? = null,
         @field:SerializedName("temp")
@@ -185,7 +185,7 @@ data class WeatherResponseModel(
         val morn: Double? = null
     )
 
-    data class MinutelyItem(
+    data class MinutelyItemResponse(
         @field:SerializedName("dt")
         val dt: Int? = null,
         @field:SerializedName("precipitation")

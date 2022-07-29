@@ -1,4 +1,4 @@
-package com.sbery.weathy.presentation
+package com.sbery.weathy.presentation.forecastscreen.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,9 +10,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.sbery.weathy.presentation.ui.theme.WeathyTheme
+import com.sbery.weathy.presentation.forecastscreen.view.ui.theme.WeathyTheme
 
-class WeatherActivity : ComponentActivity() {
+class ForecastActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
