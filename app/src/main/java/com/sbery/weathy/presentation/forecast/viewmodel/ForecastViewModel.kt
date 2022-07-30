@@ -1,4 +1,4 @@
-package com.sbery.weathy.presentation.forecastscreen.viewmodel
+package com.sbery.weathy.presentation.forecast.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,8 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.sbery.weathy.domain.interactor.WeatherInteractor
 import com.sbery.weathy.model.domain.WeatherForecast
 import com.sbery.weathy.util.livedata.SingleLiveData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * ViewModel для экрана списка категорий в ShopInSbol.
@@ -17,7 +19,8 @@ import kotlinx.coroutines.launch
  *
  * @author Рябышев Олег on 11/07/2022
  */
-internal class ShopCategoryViewModel(
+@HiltViewModel
+internal class ForecastViewModel @Inject constructor(
     private val interactor: WeatherInteractor
 ) : ViewModel() {
 
@@ -25,16 +28,16 @@ internal class ShopCategoryViewModel(
         get() = _loadingLiveData
     private var _loadingLiveData = MutableLiveData<Boolean>()
 
-    val errorLiveData: LiveData<Boolean>
+    val errorLiveData: LiveData<String>
         get() = _errorLiveData
-    private var _errorLiveData = MutableLiveData<Boolean>()
+    private var _errorLiveData = MutableLiveData<String>()
 
     val forecastLiveData: LiveData<WeatherForecast>
         get() = _forecastLiveData
     private var _forecastLiveData = SingleLiveData<WeatherForecast>()
 
-    private val exceptionHandler = CoroutineExceptionHandler { _, _ ->
-        _errorLiveData.value = true
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        _errorLiveData.value = throwable.message
     }
 
     fun loadWeatherForecast(lat: String, lon: String) {

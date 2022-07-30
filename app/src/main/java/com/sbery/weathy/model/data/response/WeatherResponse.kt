@@ -46,7 +46,7 @@ data class WeatherResponse(
         @field:SerializedName("visibility")
         val visibility: Int? = null,
         @field:SerializedName("uvi")
-        val uvi: Int? = null,
+        val uvi: Double? = null,
         @field:SerializedName("pressure")
         val pressure: Int? = null,
         @field:SerializedName("clouds")
@@ -79,7 +79,7 @@ data class WeatherResponse(
         @field:SerializedName("temp")
         val temp: Temp? = null,
         @field:SerializedName("moon_phase")
-        val moonPhase: Int? = null,
+        val moonPhase: Double? = null,
         @field:SerializedName("uvi")
         val uvi: Double? = null,
         @field:SerializedName("moonrise")
@@ -118,7 +118,7 @@ data class WeatherResponse(
         @field:SerializedName("visibility")
         val visibility: Int? = null,
         @field:SerializedName("uvi")
-        val uvi: Int? = null,
+        val uvi: Double? = null,
         @field:SerializedName("pressure")
         val pressure: Int? = null,
         @field:SerializedName("clouds")
@@ -130,7 +130,7 @@ data class WeatherResponse(
         @field:SerializedName("dt")
         val dt: Int? = null,
         @field:SerializedName("pop")
-        val pop: Int? = null,
+        val pop: Double? = null,
         @field:SerializedName("wind_deg")
         val windDeg: Int? = null,
         @field:SerializedName("dew_point")

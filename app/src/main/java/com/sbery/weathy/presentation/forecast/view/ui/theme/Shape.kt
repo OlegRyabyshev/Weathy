@@ -1,4 +1,4 @@
-package com.sbery.weathy.presentation.forecastscreen.view.ui.theme
+package com.sbery.weathy.presentation.forecast.view.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
