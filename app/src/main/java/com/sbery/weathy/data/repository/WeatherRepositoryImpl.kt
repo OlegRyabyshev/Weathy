@@ -6,8 +6,9 @@ import com.sbery.weathy.data.converter.WeatherDataToDomainConverter
 import com.sbery.weathy.domain.repository.WeatherRepository
 import com.sbery.weathy.model.data.request.WeatherRequest
 import com.sbery.weathy.model.domain.WeatherForecast
+import javax.inject.Inject
 
-class WeatherRepositoryImpl(
+class WeatherRepositoryImpl @Inject constructor(
     private val weatherApiMapper: WeatherApiMapper,
     private val weatherConverter: WeatherDataToDomainConverter
 ) : WeatherRepository {

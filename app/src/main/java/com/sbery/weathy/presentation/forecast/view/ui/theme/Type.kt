@@ -1,4 +1,4 @@
-package com.sbery.weathy.presentation.forecastscreen.view.ui.theme
+package com.sbery.weathy.presentation.forecast.view.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

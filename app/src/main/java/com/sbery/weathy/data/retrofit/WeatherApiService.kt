@@ -4,7 +4,6 @@ import com.sbery.weathy.model.data.response.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
 interface WeatherApiService {
 
     @GET("data/3.0/onecall?")
