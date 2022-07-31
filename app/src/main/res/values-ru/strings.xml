@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="weather_tab_name">Погода</string>
+    <string name="location_tab_name">Геолокация</string>
+    <string name="settings_tab_name">Настройки</string>
+</resources>
