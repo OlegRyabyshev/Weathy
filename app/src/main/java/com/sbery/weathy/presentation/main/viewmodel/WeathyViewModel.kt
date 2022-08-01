@@ -1,5 +1,8 @@
-package com.sbery.weathy.presentation.forecast.viewmodel
+package com.sbery.weathy.presentation.main.viewmodel
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,21 +15,18 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * ViewModel для экрана списка категорий в ShopInSbol.
- *
- * @property interactor интерактор получения данных в ShopInSbol.
- *
- * @author Рябышев Олег on 11/07/2022
- */
 @HiltViewModel
-internal class ForecastViewModel @Inject constructor(
+internal class WeathyViewModel @Inject constructor(
     private val interactor: WeatherInteractor
 ) : ViewModel() {
 
-    val loadingLiveData: LiveData<Boolean>
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        _errorLiveData.value = throwable.message
+    }
+
+    val loadingState: State<Boolean>
         get() = _loadingLiveData
-    private var _loadingLiveData = MutableLiveData<Boolean>()
+    private var _loadingLiveData: MutableState<Boolean> = mutableStateOf(true)
 
     val errorLiveData: LiveData<String>
         get() = _errorLiveData
@@ -36,15 +36,13 @@ internal class ForecastViewModel @Inject constructor(
         get() = _forecastLiveData
     private var _forecastLiveData = SingleLiveData<WeatherForecast>()
 
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        _errorLiveData.value = throwable.message
-    }
-
     fun loadWeatherForecast(lat: String, lon: String) {
         viewModelScope.launch(exceptionHandler) {
             _loadingLiveData.value = true
+
             val weatherForecast = interactor.getWeatherForecast(lat, lon)
             _forecastLiveData.value = weatherForecast
+
             _loadingLiveData.value = false
         }
     }
