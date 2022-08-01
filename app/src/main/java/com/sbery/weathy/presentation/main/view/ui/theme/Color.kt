@@ -1,4 +1,4 @@
-package com.sbery.weathy.presentation.forecast.view.ui.theme
+package com.sbery.weathy.presentation.main.view.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

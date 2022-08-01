@@ -1,12 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Weathy</string>
 
-    <string name="weather_tab_name">Weathy</string>
+    <string name="weather_tab_name">Weather</string>
     <string name="location_tab_name">Location</string>
     <string name="settings_tab_name">Settings</string>
-
-    <string name="splash_screen_destination" translatable="false">splash-screen</string>
-    <string name="weather_screen_destination" translatable="false">weather-screen</string>
-    <string name="location_screen_destination" translatable="false">location-screen</string>
-    <string name="settings_screen_destination" translatable="false">settings-screen</string>
 </resources>
