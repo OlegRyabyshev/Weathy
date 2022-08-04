@@ -16,8 +16,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.sbery.weathy.presentation.AppBottomNavigation
-import com.sbery.weathy.presentation.main.view.ui.theme.WeathyTheme
+import com.sbery.weathy.presentation.ui.WeathyTheme
 import com.sbery.weathy.presentation.main.viewmodel.WeathyViewModel
 import com.sbery.weathy.presentation.screen.Screen
 import com.sbery.weathy.presentation.screen.location.view.LocationScreen
@@ -69,7 +68,7 @@ class WeathyMainActivity : ComponentActivity() {
 fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
-        bottomBar = { AppBottomNavigation(navController = navController) }
+        bottomBar = { WeathyBottomNavigation(navController = navController) }
     ) {
         NavHost(
             navController = navController,
