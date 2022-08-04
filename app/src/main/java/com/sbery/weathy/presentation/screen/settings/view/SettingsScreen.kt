@@ -21,7 +21,8 @@ fun SettingsScreen() {
             imageVector = Icons.Filled.Settings,
             contentDescription = "Settings",
             tint = Color.Yellow,
-            modifier = Modifier.size(150.dp)
+            modifier = Modifier
+                .size(150.dp)
                 .align(Alignment.Center)
         )
     }
