@@ -36,14 +36,14 @@ internal class WeathyViewModel @Inject constructor(
         get() = _forecastLiveData
     private var _forecastLiveData = SingleLiveData<WeatherForecast>()
 
-    fun loadWeatherForecast(lat: String, lon: String) {
-        viewModelScope.launch(exceptionHandler) {
-            _loadingLiveData.value = true
-
-            val weatherForecast = interactor.getWeatherForecast(lat, lon)
-            _forecastLiveData.value = weatherForecast
-
-            _loadingLiveData.value = false
-        }
-    }
+//    fun loadWeatherForecast(lat: String, lon: String) {
+//        viewModelScope.launch(exceptionHandler) {
+//            _loadingLiveData.value = true
+//
+//            val weatherForecast = interactor.getWeatherForecast(lat, lon)
+//            _forecastLiveData.value = weatherForecast
+//
+//            _loadingLiveData.value = false
+//        }
+//    }
 }

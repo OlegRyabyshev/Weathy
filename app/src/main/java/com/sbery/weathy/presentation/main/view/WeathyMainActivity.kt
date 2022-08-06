@@ -18,11 +18,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.sbery.weathy.presentation.ui.WeathyTheme
 import com.sbery.weathy.presentation.main.viewmodel.WeathyViewModel
-import com.sbery.weathy.presentation.screen.Screen
-import com.sbery.weathy.presentation.screen.location.view.LocationScreen
-import com.sbery.weathy.presentation.screen.settings.view.SettingsScreen
-import com.sbery.weathy.presentation.screen.splashscreen.SplashScreen
-import com.sbery.weathy.presentation.screen.weather.view.WeatherScreen
+import com.sbery.weathy.presentation.screens.Screen
+import com.sbery.weathy.presentation.screens.location.LocationScreen
+import com.sbery.weathy.presentation.screens.settings.SettingsScreen
+import com.sbery.weathy.presentation.screens.splashscreen.SplashScreen
+import com.sbery.weathy.presentation.screens.weather.WeatherScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,7 +35,6 @@ class WeathyMainActivity : ComponentActivity() {
 
         initSplashScreen()
         initObservers()
-        viewModel.loadWeatherForecast("44", "-20")
 
         setContent {
             WeathyTheme {
@@ -46,13 +45,12 @@ class WeathyMainActivity : ComponentActivity() {
 
     private fun initSplashScreen() {
         installSplashScreen().setKeepOnScreenCondition {
-            viewModel.loadingState.value.not()
+//            viewModel.loadingState.value.not()
+            false
         }
     }
 
     private fun initObservers() {
-        viewModel.loadingState
-
         viewModel.errorLiveData.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         }
