@@ -6,15 +6,12 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.sbery.weathy.R
-import com.sbery.weathy.presentation.screen.Screen
+import com.sbery.weathy.presentation.screens.Screen
 
 @Composable
 fun WeathyBottomNavigation(navController: NavController) {
@@ -24,7 +21,7 @@ fun WeathyBottomNavigation(navController: NavController) {
         Screen.SettingsScreen
     )
 
-    BottomAppBar() {
+    BottomAppBar {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 

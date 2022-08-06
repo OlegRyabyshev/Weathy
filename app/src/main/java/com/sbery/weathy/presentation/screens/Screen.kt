@@ -1,4 +1,4 @@
-package com.sbery.weathy.presentation.screen
+package com.sbery.weathy.presentation.screens
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

@@ -18,22 +18,14 @@ import dagger.hilt.components.SingletonComponent
 abstract class BinderModule {
 
     @Binds
-    abstract fun bindWeatherApiMapper(
-        impl: WeatherApiMapperImpl
-    ): WeatherApiMapper
+    abstract fun bindWeatherApiMapper(impl: WeatherApiMapperImpl): WeatherApiMapper
 
     @Binds
-    abstract fun bindWeatherRepository(
-        impl: WeatherRepositoryImpl
-    ): WeatherRepository
+    abstract fun bindWeatherRepository(impl: WeatherRepositoryImpl): WeatherRepository
 
     @Binds
-    abstract fun bindWeatherInteractor(
-        impl: WeatherInteractorImpl
-    ): WeatherInteractor
+    abstract fun bindWeatherInteractor(impl: WeatherInteractorImpl): WeatherInteractor
 
     @Binds
-    abstract fun bindWeatherDataToDomainConverter(
-        impl: WeatherDataToDomainConverterImpl
-    ): WeatherDataToDomainConverter
+    abstract fun bindWeatherDataToDomainConverter(impl: WeatherDataToDomainConverterImpl): WeatherDataToDomainConverter
 }
