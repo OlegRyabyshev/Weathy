@@ -3,35 +3,46 @@ package com.sbery.weathy.data.converter
 import com.sbery.weathy.R
 import com.sbery.weathy.model.data.response.WeatherResponse
 import com.sbery.weathy.model.domain.WeatherForecast
-import com.sbery.weathy.model.domain.WeatherForecast.TimeBasedForecast
+import com.sbery.weathy.model.domain.WeatherForecast.DailyForecast
+import com.sbery.weathy.model.domain.WeatherForecast.HourlyForecast
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.math.roundToInt
 
 @Singleton
 class WeatherDataToDomainConverterImpl @Inject constructor() : WeatherDataToDomainConverter {
 
     override fun convert(dataModel: WeatherResponse): WeatherForecast {
-        val lat = dataModel.lat ?: throw IllegalArgumentException()
-        val lon = dataModel.lon ?: throw IllegalArgumentException()
-        val temp = dataModel.current?.temp ?: throw IllegalArgumentException()
-        val feelsLikeTemp = dataModel.current.feelsLike ?: throw IllegalArgumentException()
+        val lat = dataModel.lat
+        val lon = dataModel.lon
 
-        val hourlyList: List<TimeBasedForecast> = dataModel.hourly?.map {
-            val hour = it?.dt ?: throw IllegalArgumentException()
-            val iconRes = it.weather?.first()?.id?.toIconResource() ?: throw IllegalArgumentException()
-            val hourlyTemp = it.temp ?: throw IllegalArgumentException()
+        val currentTemp = dataModel.current.temp.roundToInt()
+        val currentFeelsTemp = dataModel.current.feelsLike.roundToInt()
 
-            TimeBasedForecast(hour, iconRes, hourlyTemp)
-        } ?: throw IllegalArgumentException()
+        val hourlyList: List<HourlyForecast> = dataModel.hourly.map {
+            val hour = it.dt
+            val iconRes = it.weather.firstOrNull()?.id?.toIconResource() ?: throw IllegalArgumentException()
+            val hourlyTemp = it.temp.roundToInt()
 
+            HourlyForecast(hour, iconRes, hourlyTemp)
+        }
 
+        val dailyList: List<DailyForecast> = dataModel.daily.map {
+            val hour = it.dt
+            val iconRes = it.weather.firstOrNull()?.id?.toIconResource() ?: throw IllegalArgumentException()
+            val maxTemp = it.temp.max.roundToInt()
+            val minTemp = it.temp.min.roundToInt()
+
+            DailyForecast(hour, iconRes, maxTemp, minTemp)
+        }
 
         return WeatherForecast(
-            lat.toString(),
-            lon.toString(),
-            temp,
-            feelsLikeTemp,
-            hourlyList
+            lat,
+            lon,
+            currentTemp,
+            currentFeelsTemp,
+            hourlyList,
+            dailyList
         )
     }
 
@@ -114,6 +125,6 @@ class WeatherDataToDomainConverterImpl @Inject constructor() : WeatherDataToDoma
             803 -> R.drawable.wc_cloud
             804 -> R.drawable.wc_cloud
 
-            else -> R.drawable.wc_cloud
+            else -> R.drawable.wc_upload
         }
 }
