@@ -10,16 +10,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun LocationScreen() {
+fun LocationScreen(locationViewModel: LocationViewModel = hiltViewModel()) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
         Icon(
             imageVector = Icons.Filled.LocationOn,
             contentDescription = "Location",
-            modifier = Modifier.size(150.dp)
+            modifier = Modifier
+                .size(150.dp)
                 .align(Alignment.Center)
         )
     }

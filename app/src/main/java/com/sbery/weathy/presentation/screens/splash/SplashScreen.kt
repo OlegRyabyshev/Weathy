@@ -1,4 +1,4 @@
-package com.sbery.weathy.presentation.screens.splashscreen
+package com.sbery.weathy.presentation.screens.splash
 
 import androidx.compose.runtime.Composable
 

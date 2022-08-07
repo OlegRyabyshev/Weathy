@@ -21,7 +21,7 @@ import com.sbery.weathy.presentation.main.viewmodel.WeathyViewModel
 import com.sbery.weathy.presentation.screens.Screen
 import com.sbery.weathy.presentation.screens.location.LocationScreen
 import com.sbery.weathy.presentation.screens.settings.SettingsScreen
-import com.sbery.weathy.presentation.screens.splashscreen.SplashScreen
+import com.sbery.weathy.presentation.screens.splash.SplashScreen
 import com.sbery.weathy.presentation.screens.weather.WeatherScreen
 import dagger.hilt.android.AndroidEntryPoint
 
