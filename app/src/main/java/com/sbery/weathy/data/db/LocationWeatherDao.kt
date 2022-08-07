@@ -12,10 +12,10 @@ import com.sbery.weathy.model.data.db.LocationWeatherEntity
 interface LocationWeatherDao {
 
     @Query("SELECT EXISTS(SELECT * FROM location_weather WHERE location_lat = :locationLat AND location_lon = :locationLon)")
-    fun isLocationWeatherExist(locationLat: String, locationLon: String): Boolean
+    fun isLocationWeatherExist(locationLat: Double, locationLon: Double): Boolean
 
     @Query("SELECT * FROM location_weather WHERE location_lat = :locationLat AND location_lon = :locationLon")
-    fun getLocationWeather(locationLat: String, locationLon: String): LocationWeatherEntity
+    fun getLocationWeather(locationLat: Double, locationLon: Double): LocationWeatherEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addLocationWeather(entity: LocationWeatherEntity)

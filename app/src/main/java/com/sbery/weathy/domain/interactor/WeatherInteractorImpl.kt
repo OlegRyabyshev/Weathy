@@ -8,6 +8,6 @@ class WeatherInteractorImpl @Inject constructor(
     private val weatherRepository: WeatherRepository
 ) : WeatherInteractor {
 
-    override suspend fun getWeatherForecast(lat: String, lon: String): WeatherForecast =
+    override suspend fun getWeatherForecast(lat: Double, lon: Double): WeatherForecast =
         weatherRepository.getWeatherForecast(lat, lon)
 }

@@ -5,6 +5,8 @@ import com.sbery.weathy.data.api.WeatherApiMapperImpl
 import com.sbery.weathy.data.converter.WeatherDataToDomainConverter
 import com.sbery.weathy.data.converter.WeatherDataToDomainConverterImpl
 import com.sbery.weathy.data.repository.WeatherRepositoryImpl
+import com.sbery.weathy.data.storage.LocationWeatherStorage
+import com.sbery.weathy.data.storage.LocationWeatherStorageImpl
 import com.sbery.weathy.domain.interactor.WeatherInteractor
 import com.sbery.weathy.domain.interactor.WeatherInteractorImpl
 import com.sbery.weathy.domain.repository.WeatherRepository
@@ -28,4 +30,7 @@ abstract class BinderModule {
 
     @Binds
     abstract fun bindWeatherDataToDomainConverter(impl: WeatherDataToDomainConverterImpl): WeatherDataToDomainConverter
+
+    @Binds
+    abstract fun bindLocationWeatherStorage(impl: LocationWeatherStorageImpl): LocationWeatherStorage
 }

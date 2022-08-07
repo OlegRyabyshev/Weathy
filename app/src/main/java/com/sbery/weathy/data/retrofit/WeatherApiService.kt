@@ -9,8 +9,8 @@ interface WeatherApiService {
     @GET("data/3.0/onecall?")
     suspend fun getAppMetricsReport(
         // required
-        @Query("lat") lat: String,
-        @Query("lon") lon: String,
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
         @Query("appid") appId: String,
         // optional
         @Query("exclude") exclude: String,

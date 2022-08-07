@@ -24,7 +24,7 @@ class WeatherViewModel @Inject constructor(
         get() = _weatherUiState
     private val _weatherUiState = mutableStateOf<WeatherUiState>(WeatherUiState.Loading)
 
-    fun loadWeatherForecast(lat: String, lon: String) {
+    fun loadWeatherForecast(lat: Double, lon: Double) {
         viewModelScope.launch(exceptionHandler) {
             _weatherUiState.value = WeatherUiState.Loading
             val weatherForecast = interactor.getWeatherForecast(lat, lon)

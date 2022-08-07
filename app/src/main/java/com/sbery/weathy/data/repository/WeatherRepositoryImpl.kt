@@ -16,20 +16,23 @@ class WeatherRepositoryImpl @Inject constructor(
     private val weatherConverter: WeatherDataToDomainConverter
 ) : WeatherRepository {
 
-    override suspend fun getWeatherForecast(lat: String, lon: String): WeatherForecast {
+    override suspend fun getWeatherForecast(lat: Double, lon: Double): WeatherForecast {
         System.currentTimeMillis()
 
         if (locationWeatherStorage.isLocationWeatherExist(lat, lon)) {
             val storedWeather = locationWeatherStorage.getLocationWeather(lat, lon)
-            return storedWeather
+
+            if (isStoredCacheValid(storedWeather)) {
+                return weatherConverter.convert(storedWeather)
+            }
         }
 
         return getWeatherForecastFromApiCall(lat, lon)
     }
 
     private suspend fun getWeatherForecastFromApiCall(
-        lat: String,
-        lon: String
+        lat: Double,
+        lon: Double
     ): WeatherForecast {
         val requestModel = WeatherRequest(
             lat = lat,
@@ -40,17 +43,31 @@ class WeatherRepositoryImpl @Inject constructor(
         val weatherResponse = weatherApiMapper.getWeatherForecast(requestModel)
         val convertedResponse = weatherConverter.convert(weatherResponse)
 
-        locationWeatherStorage.addLocationWeather(
-            LocationWeatherEntity(
-                lat,
-                lon,
-                System.currentTimeMillis(),
-
-            )
-        )
+        cacheWeatherInfo(convertedResponse)
 
         return convertedResponse
     }
 
+    private fun isStoredCacheValid(storedWeather: LocationWeatherEntity): Boolean {
+        val cacheTime = storedWeather.locationSaveTime
+        val currentTime = System.currentTimeMillis()
 
+        if (currentTime - cacheTime < CACHE_PERIOD) {
+            return true
+        }
+
+        return false
+    }
+
+    private suspend fun cacheWeatherInfo(convertedResponse: WeatherForecast) {
+        locationWeatherStorage.addLocationWeather(
+            weatherConverter.convert(convertedResponse)
+        )
+    }
+
+    private companion object {
+
+        /** 30 minutes in ms */
+        const val CACHE_PERIOD = 1_800_000L
+    }
 }
